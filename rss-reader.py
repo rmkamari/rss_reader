@@ -14,12 +14,8 @@ while True:
             print(url['link'])
             rss_link = url['link']
 
-            try:
-                NewsFeed = feedparser.parse(rss_link)
-                print(NewsFeed)
-            except Exception as err:
-                print(err + "\nRSS link is missing!")
-
+            NewsFeed = feedparser.parse(rss_link)
+            print(NewsFeed)
             # entry = NewsFeed.entries[1]
             try:
                 for news in NewsFeed.entries:
