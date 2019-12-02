@@ -9,13 +9,10 @@ def get_rss():
                              "mongo-rs-2-mongod.percona-server-mongodb.autoip.dcos.thisdcos.directory:27017"
                              "/rssDb?replicaSet=rs")
 
-        db = client.rss_reader  # Connection to the database
+        db = client.rssDb  # Connection to the database
         my_col = db['rss_link']
         return my_col.find({})
     except Exception as err:
         print(err)
         print("\nMongoDB  connection error!")
-
-
-print(get_rss())
 
