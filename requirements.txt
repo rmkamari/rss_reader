@@ -1,5 +1,7 @@
+requests
+elasticsearch
 feedparser
-newspaper
+newspaper3k
 pymongo
 tqdm
-kafka
+kafka-python
