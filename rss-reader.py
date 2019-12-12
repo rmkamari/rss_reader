@@ -5,8 +5,10 @@ import time
 from datetime import datetime
 from mongodb import get_rss
 from progress_bar import progress
+import elastic_python
+import json
 
-
+manage_elastic = elastic_python.ManageElasticsearch()
 while True:
     try:
         rss_list = get_rss()
@@ -38,6 +40,9 @@ while True:
                     }
                     print(newses)
                     insert_kafka(topic='news-rss', json_data=newses)
+                    response_metadata = manage_elastic.metadata_from_prepossess_za_api(newses)
+                    response_elastic = manage_elastic.insert_elastic(index_document=response_metadata)
+                    print(response_elastic)
             except Exception as err:
                 print(err)
     except Exception as err:
